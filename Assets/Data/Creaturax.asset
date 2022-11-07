@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01239387149d4b69be256f32b966de2c, type: 3}
+  m_Name: Creaturax
+  m_EditorClassIdentifier: 
+  IsQuickPlay: 0
+  Name: Creaturax the Middleman
+  Description: Bijur LOL
+  BaseHealth: 4
+  BaseDefense: 0
+  BaseAttack: 2
