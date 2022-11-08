@@ -9,16 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c2995501e64b2ebef42ee56396b09c, type: 3}
-  m_Name: Creaturax
+  m_Script: {fileID: 11500000, guid: 81beb3eae95448ef98d127b80b1e7d2c, type: 3}
+  m_Name: SpellDrawTwo
   m_EditorClassIdentifier: 
   IsQuickPlay: 0
-  Name: Creaturax
-  Description: This is a description
+  Name: Pot of Weed
+  Description: Draw 2 cards.
   OnDraw: []
   OnPlay:
-  - {fileID: 11400000, guid: 8077badb1e8e58644a5043faf7edb453, type: 2}
+  - {fileID: 11400000, guid: 309f70c8c30d3f144abf8ef9284d218b, type: 2}
+  - {fileID: 11400000, guid: 309f70c8c30d3f144abf8ef9284d218b, type: 2}
   OnDestroy: []
-  BaseHealth: 4
-  BaseDefense: 0
-  BaseAttack: 2

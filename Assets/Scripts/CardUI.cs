@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class CardUI : MonoBehaviour{
     public Image Background;
     public TextMeshProUGUI Description;
-    public Card BaseCard;
-
     public GameObject Stats;
     public TextMeshProUGUI Health;
     public TextMeshProUGUI Defense;
     public TextMeshProUGUI Attack;
+
+    public Card BaseCard{ get; private set; }
 
     public void SetCard(Card card){
         if (card == null) throw new NullReferenceException();
@@ -24,10 +24,16 @@ public class CardUI : MonoBehaviour{
         }
         else{
             Stats.SetActive(true);
-            var creature = card as CardCreature;
-            Health.text = creature.BaseHealth.ToString();
-            Defense.text = creature.BaseDefense.ToString();
-            Attack.text = creature.BaseAttack.ToString();
+            ChangeStats();
+            var data = GetComponent<CardData>();
+            data.OnChange += ChangeStats;
         }
+    }
+
+    private void ChangeStats(){
+        var data = GetComponent<CardData>();
+        Health.text = data.Get("Health").ToString();
+        Defense.text = data.Get("Defense").ToString();
+        Attack.text = data.Get("Attack").ToString();
     }
 }

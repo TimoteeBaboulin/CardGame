@@ -493,6 +493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8614062676209382927}
   - component: {fileID: 2460050950081638157}
+  - component: {fileID: 3767093381842885170}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -540,6 +541,18 @@ MonoBehaviour:
   Health: {fileID: 953817081990110386}
   Defense: {fileID: 6605577771758397079}
   Attack: {fileID: 2100009131093525347}
+--- !u!114 &3767093381842885170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4959424505785359334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7867f14a5406d4599a165ac524f8dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6424484905131487939
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,7 +980,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 3.5
+  m_fontSize: 6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

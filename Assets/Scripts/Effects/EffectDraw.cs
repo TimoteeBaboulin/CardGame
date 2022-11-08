@@ -1,24 +1,24 @@
 ﻿using UnityEngine;
 
+[CreateAssetMenu(menuName = "Effects/Draw", fileName = "DrawOne", order = 1)]
 public class EffectDraw : CardEffect{
     public int CardsDrawn = 1;
-    public Target Target = Target.both;
+    public Target Target = Target.self;
 
     public override void Do(Manager manager, int owner){
-        if (Target == Target.both){
-            for (int x = 0; x < 2; x++){
-                manager.PlayerHands[x].Add(CreateInstance<Creaturax>());
-            }
-            return;
-        }
+        switch (Target){
+            case Target.self:
+                manager.DrawCards(owner, CardsDrawn);
+                break;
 
-        if (Target == Target.self){
-            manager.PlayerHands[owner].Add(CreateInstance<Creaturax>());
-        }
+            case Target.enemy:
+                manager.DrawCards(owner == 0 ? 1 : 0, CardsDrawn);
+                break;
 
-        if (Target == Target.enemy){
-            if (owner == 0) manager.PlayerHands[1].Add(CreateInstance<Creaturax>());
-            else manager.PlayerHands[0].Add(CreateInstance<Creaturax>());
+            case Target.both:
+                manager.DrawCards(0, CardsDrawn);
+                manager.DrawCards(1, CardsDrawn);
+                break;
         }
     }
 }

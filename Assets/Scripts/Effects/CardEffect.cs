@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class CardEffect : ScriptableObject{
@@ -8,6 +6,6 @@ public abstract class CardEffect : ScriptableObject{
         enemy,
         both
     }
-    
+
     public abstract void Do(Manager manager, int owner);
 }
