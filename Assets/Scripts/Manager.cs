@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
-using Vector3 = UnityEngine.Vector3;
+// using Vector3 = UnityEngine.Vector3;
 
 public class Manager : MonoBehaviour{
     public enum GamePhase{
@@ -17,20 +17,27 @@ public class Manager : MonoBehaviour{
         Monster2
     }
 
+    //List of all possible cards
     public List<Card> Deck;
 
+    //Phase related elements
     public TextMeshProUGUI PhaseText;
     public GamePhase CurrentPhase = GamePhase.Draw;
     public int CurrentPlayerIndex;
+    
+    //Turn Change Event
+    public static Action<Manager, int> OnTurnChange;
 
+    //Dependencies
     public GameObject CardPrefab;
     public LayoutUI LayoutUI;
-
+    
+    //Player collections
     public readonly List<GameObject>[] PlayerBoards = new List<GameObject>[2];
-    //Currently unused, should be used later on
-    //public readonly List<GameObject>[] PlayerDeck = new List<GameObject>[2];
     public readonly List<GameObject>[] PlayerHands = new List<GameObject>[2];
+    public readonly GameObject[] PlayerTerrains = new GameObject[2];
 
+    //Serves to limit play while an animation is playing
     private bool _canPlay = true;
 
     private void Start(){
@@ -56,7 +63,7 @@ public class Manager : MonoBehaviour{
             if (result.gameObject.GetComponentInParent<CardUI>()){
                 var card = result.gameObject.GetComponentInParent<CardUI>();
                 if (!PlayerHands[CurrentPlayerIndex].Contains(card.gameObject)) return;
-                if (!CanPlay(card.BaseCard.Type)) return;
+                if (!CanPlay(card.BaseCard)) return;
                 
                 card.GetComponent<CardUI>().BaseCard.Played(this, card.gameObject);
                 return;
@@ -102,19 +109,15 @@ public class Manager : MonoBehaviour{
     private void InitialiseLists(){
         InitialiseList(PlayerBoards);
         InitialiseList(PlayerHands);
-        //InitialiseList(PlayerDeck);
     }
 
-    private void InitialiseList(List<GameObject>[] list){
+    private static void InitialiseList(List<GameObject>[] list){
         for (var x = 0; x < list.Length; x++) list[x] = new List<GameObject>();
     }
 
-    private void Play(GameObject card){
-        card.GetComponent<CardUI>().BaseCard.Played(this, card);
-    }
-
-    private bool CanPlay(Card.CardType type){
-        return (type != Card.CardType.Draw && CurrentPhase != GamePhase.Main) || (type == Card.CardType.Draw && CurrentPhase != GamePhase.Draw);
+    private bool CanPlay(Card card){
+        var type = card.Type;
+        return (type != Card.CardType.Draw && CurrentPhase == GamePhase.Main) || (type == Card.CardType.Draw && CurrentPhase == GamePhase.Draw) || (card.IsQuickPlay && CurrentPhase == GamePhase.QuickPlay);
     }
 
     private IEnumerator CardAnimationCoroutine(GameObject card, GameObject field, Action function){

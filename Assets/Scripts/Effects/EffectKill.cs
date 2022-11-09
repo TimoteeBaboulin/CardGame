@@ -7,9 +7,10 @@ public class EffectKill : CardEffect{
     public int NumberKilled = 1;
     public Target Target = Target.enemy;
 
-    public override void Do(Manager manager, int owner){
+    public override void Do(Manager manager, GameObject card){
         GameObject[] cardsDestroyed;
 
+        int owner = card.GetComponent<CardData>().Get("Owner");
         switch (Target){
             case Target.self:
                 cardsDestroyed = KillCards(manager.PlayerBoards[owner], NumberKilled);
@@ -30,7 +31,7 @@ public class EffectKill : CardEffect{
                 break;
         }
 
-        foreach (var card in cardsDestroyed) card.GetComponent<CardUI>().BaseCard.Destroy(manager, card);
+        foreach (var cards in cardsDestroyed) card.GetComponent<CardUI>().BaseCard.Destroy(manager, card);
     }
 
     private GameObject[] KillCards(List<GameObject> cards, int number){

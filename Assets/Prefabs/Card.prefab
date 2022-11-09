@@ -536,7 +536,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Background: {fileID: 2812452838338651157}
   Description: {fileID: 4796243572106238681}
-  BaseCard: {fileID: 11400000, guid: 31d85157e443a4a42bc73fbeaca70060, type: 2}
   Stats: {fileID: 4280167477132043057}
   Health: {fileID: 953817081990110386}
   Defense: {fileID: 6605577771758397079}
@@ -1338,7 +1337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

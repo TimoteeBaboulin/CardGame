@@ -18,6 +18,7 @@ public class CardUI : MonoBehaviour{
 
         BaseCard = card;
         Description.text = BaseCard.Description;
+        Background.sprite = BaseCard.Sprite;
 
         if (card.Type != Card.CardType.Creature){
             Stats.SetActive(false);

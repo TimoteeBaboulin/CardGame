@@ -3,6 +3,7 @@ using UnityEngine;
 public class LayoutUI : MonoBehaviour{
     public GameObject[] PlayerFields;
     public GameObject[] PlayerHands;
-    public GameObject[] PlayerDraw;
-    public GameObject[] PlayerDiscard;
+    public GameObject[] PlayerDraws;
+    public GameObject[] PlayerDiscards;
+    public GameObject[] PlayerTerrains;
 }

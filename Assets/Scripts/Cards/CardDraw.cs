@@ -9,7 +9,7 @@ namespace Cards{
             var newCard = InstantiateCard(manager, owner);
 
             foreach (var effect in OnDraw){
-                effect.Do(manager, owner);
+                effect.Do(manager, newCard);
             }
         
             Played(manager, newCard);

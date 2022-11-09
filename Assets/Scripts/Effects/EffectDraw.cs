@@ -5,7 +5,9 @@ public class EffectDraw : CardEffect{
     public int CardsDrawn = 1;
     public Target Target = Target.self;
 
-    public override void Do(Manager manager, int owner){
+    public override void Do(Manager manager, GameObject card){
+        int owner = card.GetComponent<CardData>().Get("Owner");
+        
         switch (Target){
             case Target.self:
                 manager.DrawCards(owner, CardsDrawn);

@@ -7,5 +7,5 @@ public abstract class CardEffect : ScriptableObject{
         both
     }
 
-    public abstract void Do(Manager manager, int owner);
+    public abstract void Do(Manager manager, GameObject card);
 }
