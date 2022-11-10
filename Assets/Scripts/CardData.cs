@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CardData : MonoBehaviour{
     private readonly Dictionary<string, int> _data = new();
+    public bool CanAttack{ get; set; }
     public event Action OnChange;
 
     public bool Contains(string key){

@@ -3,23 +3,23 @@
 [CreateAssetMenu(menuName = "Effects/Draw", fileName = "DrawOne", order = 1)]
 public class EffectDraw : CardEffect{
     public int CardsDrawn = 1;
-    public Target Target = Target.self;
+    public Target Target = Target.Self;
 
-    public override void Do(Manager manager, GameObject card){
+    public override void Do(GameObject card){
         int owner = card.GetComponent<CardData>().Get("Owner");
         
         switch (Target){
-            case Target.self:
-                manager.DrawCards(owner, CardsDrawn);
+            case Target.Self:
+                Manager.Instance.DrawCards(owner, CardsDrawn);
                 break;
 
-            case Target.enemy:
-                manager.DrawCards(owner == 0 ? 1 : 0, CardsDrawn);
+            case Target.Enemy:
+                Manager.Instance.DrawCards(owner == 0 ? 1 : 0, CardsDrawn);
                 break;
 
-            case Target.both:
-                manager.DrawCards(0, CardsDrawn);
-                manager.DrawCards(1, CardsDrawn);
+            case Target.Both:
+                Manager.Instance.DrawCards(0, CardsDrawn);
+                Manager.Instance.DrawCards(1, CardsDrawn);
                 break;
         }
     }

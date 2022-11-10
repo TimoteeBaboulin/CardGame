@@ -7,23 +7,23 @@ namespace Cards{
         public override CardType Type => CardType.Terrain;
         public List<CardEffect> OnTurnChange = new();
         
-        public override void Played(Manager manager, GameObject card){
+        public override void Played(GameObject card){
             int owner = card.GetComponent<CardData>().Get("Owner");
-            manager.PlayerHands[owner].Remove(card);
-            OnCardPlayed?.Invoke(manager, card);
+            Manager.Instance.PlayerHands[owner].Remove(card);
+            OnCardPlayed?.Invoke(card);
 
-            manager.ChangeCardField(card, manager.LayoutUI.PlayerTerrains[owner], () => {
-                if (manager.PlayerTerrains[owner] != null)
-                    Destroy(manager, manager.PlayerTerrains[owner]);
-                manager.PlayerTerrains[owner] = card;
+            Manager.Instance.ChangeCardField(card, new Field(owner, FieldType.Terrain), () => {
+                if (Manager.Instance.PlayerTerrains[owner] != null)
+                    Destroy(Manager.Instance.PlayerTerrains[owner]);
+                Manager.Instance.PlayerTerrains[owner] = card;
                 
                 LinkEffects();
             });
         }
 
-        public override void Destroy(Manager manager, GameObject card){
+        public override void Destroy(GameObject card){
             UnLinkEffects();
-            base.Destroy(manager, card);
+            base.Destroy(card);
         }
 
         private void LinkEffects(){

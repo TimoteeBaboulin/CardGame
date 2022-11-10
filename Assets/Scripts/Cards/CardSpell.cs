@@ -5,9 +5,9 @@ namespace Cards{
     public class CardSpell : Card{
         public override CardType Type => CardType.Spell;
 
-        public override void Played(Manager manager, GameObject card){
-            base.Played(manager, card);
-            Destroy(manager, card);
+        public override void Played(GameObject card){
+            base.Played(card);
+            Destroy(card);
         }
     }
 }

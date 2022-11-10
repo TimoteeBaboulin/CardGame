@@ -1,40 +1,42 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(menuName = "Effects/Kill", fileName = "KillOne", order = 0)]
 public class EffectKill : CardEffect{
     public int NumberKilled = 1;
-    public Target Target = Target.enemy;
+    public Target Target = Target.Enemy;
 
-    public override void Do(Manager manager, GameObject card){
+    public override void Do(GameObject card){
         GameObject[] cardsDestroyed;
 
         int owner = card.GetComponent<CardData>().Get("Owner");
         switch (Target){
-            case Target.self:
-                cardsDestroyed = KillCards(manager.PlayerBoards[owner], NumberKilled);
+            case Target.Self:
+                cardsDestroyed = KillCards(Manager.Instance.PlayerBoards[owner], NumberKilled);
                 break;
 
-            case Target.enemy:
-                cardsDestroyed = KillCards(manager.PlayerBoards[owner == 1 ? 0 : 1], NumberKilled);
+            case Target.Enemy:
+                cardsDestroyed = KillCards(Manager.Instance.PlayerBoards[owner == 1 ? 0 : 1], NumberKilled);
                 break;
 
-            case Target.both:
+            case Target.Both:
                 var cards = new List<GameObject>();
-                cards = manager.PlayerBoards[0].Union(manager.PlayerBoards[1]).ToList();
+                cards = Manager.Instance.PlayerBoards[0].Union(Manager.Instance.PlayerBoards[1]).ToList();
                 cardsDestroyed = KillCards(cards, NumberKilled);
                 break;
 
             default:
-                cardsDestroyed = new GameObject[0];
+                cardsDestroyed = Array.Empty<GameObject>();
                 break;
         }
 
-        foreach (var cards in cardsDestroyed) card.GetComponent<CardUI>().BaseCard.Destroy(manager, card);
+        foreach (var destroyedCard in cardsDestroyed) destroyedCard.GetComponent<CardUI>().BaseCard.Destroy(card);
     }
 
-    private GameObject[] KillCards(List<GameObject> cards, int number){
+    private static GameObject[] KillCards(List<GameObject> cards, int number){
         if (number >= cards.Count) return cards.ToArray();
 
         var array = new GameObject[number];

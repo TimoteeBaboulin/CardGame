@@ -5,14 +5,14 @@ namespace Cards{
     public class CardDraw : Card{
         public override CardType Type => CardType.Draw;
 
-        public override void Draw(Manager manager, int owner){
-            var newCard = InstantiateCard(manager, owner);
+        public override void Draw(int owner){
+            var newCard = InstantiateCard(owner);
 
             foreach (var effect in OnDraw){
-                effect.Do(manager, newCard);
+                effect.Do(newCard);
             }
         
-            Played(manager, newCard);
+            Played(newCard);
         }
     }
 }

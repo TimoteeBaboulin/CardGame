@@ -2,10 +2,10 @@ using UnityEngine;
 
 public abstract class CardEffect : ScriptableObject{
     public enum Target{
-        self,
-        enemy,
-        both
+        Self,
+        Enemy,
+        Both
     }
 
-    public abstract void Do(Manager manager, GameObject card);
+    public abstract void Do(GameObject card);
 }
