@@ -13,9 +13,9 @@ namespace Cards{
         public override void Draw(int owner){
             var newCard = InstantiateCard(owner);
             var data = newCard.GetComponent<CardData>();
-            data.Change("Health", 0);
-            data.Change("Defense", 0);
-            data.Change("Attack", 0);
+            data.Change("Health", BaseHealth);
+            data.Change("Defense", BaseDefense);
+            data.Change("Attack", BaseAttack);
 
             Manager.Instance.ChangeCardField(newCard, new Field(owner, FieldType.Hand),
                 () => {
