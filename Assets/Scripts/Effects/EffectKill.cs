@@ -33,7 +33,7 @@ public class EffectKill : CardEffect{
                 break;
         }
 
-        foreach (var destroyedCard in cardsDestroyed) destroyedCard.GetComponent<CardUI>().BaseCard.Destroy(card);
+        foreach (var destroyedCard in cardsDestroyed) destroyedCard.GetComponent<CardUI>().BaseCard.Destroy(destroyedCard);
     }
 
     private static GameObject[] KillCards(List<GameObject> cards, int number){
